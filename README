@@ -38,7 +38,9 @@ At the end you can re-build the image with the new layer with:
 
 bitbake core-image-minimal.
 
-You can test the application by running the "runqemu qemuarm" command and using Eclipse,configured for Yocto, by the debugging heartbeat.c.
+You can test the application by running the "runqemu qemuarm" command and and after it opens, use the "heartbeat" command. 
+We can see every time he invokes the read function of the cdd and after a few seconds the result of the heartbeat measurement which is 76bpm.
+It's possible to use Eclipse,configured for Yocto, by the debugging heartbeat.c.
 
 
 
