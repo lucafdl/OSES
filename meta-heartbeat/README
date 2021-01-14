@@ -25,7 +25,6 @@ So, you added the layer. Inside the layer we have two recipes in recipes-example
 - "heartbeat" for the linux application; 
 - "mycdd" for the character-based driver;
 
-In the heartbeat.c file you need to change the path of the library "data.h".
 
 Next, edit the local.conf file located in build_qemuarm / conf, adding the following lines:
 IMAGE_INSTALL_append = " heartbeat" 
