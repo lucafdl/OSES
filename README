@@ -1,0 +1,45 @@
+This README file contains information on the contents of the meta-heartbeat layer.
+This repository contains the implementation of a hearth rate monitor, which is made of two
+components:
+- A Linux character-based driver (mycdd) used to access a “virtual” Photopletismography (PPG) sensor
+- A Linux user application (heartbeat)
+
+To build a Linux distribution using the Yocto build system we need to start by downloading the source repositories.
+The Linux meta-distribution (the source code from which our custom Linux distribution, i.e., bootloader, kernel,root file system containing system and user programs would be built) 
+is called Poky.
+
+After you've done all the steps for setting up poky, you can download this repository.
+
+In this github repository it is located the layer named "meta-heartbeat".
+
+You can download the repository with the command <git clone ...> 
+Then you have to move the repository in your poky directory.
+
+After doing this, do this commands:
+
+cd poky
+source oe-init-build-env build_qemuarm
+bitbake-layers add-layer ../heartbeat/
+
+So, you added the layer. Inside the layer we have two recipes in recipes-example:
+- "heartbeat" for the linux application; 
+- "mycdd" for the character-based driver;
+
+In the heartbeat.c file you need to change the path of the library "data.h".
+
+Next, edit the local.conf file located in build_qemuarm / conf, adding the following lines:
+IMAGE_INSTALL_append = " heartbeat" 
+IMAGE_INSTALL_append = " mycdd"
+KERNEL_MODULE_AUTOLOAD += "mycdd"
+
+These lines tell Yocto that, when building Linux, the newly created device driver shall be built, and that it shall be
+included in the root file system.
+
+At the end you can re-build the image with the new layer with:
+
+bitbake core-image-minimal.
+
+You can test the application by running the "runqemu qemuarm" command and using Eclipse,configured for Yocto, by the debugging heartbeat.c.
+
+
+
