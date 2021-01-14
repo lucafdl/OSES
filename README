@@ -12,7 +12,7 @@ After you've done all the steps for setting up poky, you can download this repos
 
 In this github repository it is located the layer named "meta-heartbeat".
 
-You can download the repository with the command <git clone ...> 
+You can download the repository with the command <git clone https://github.com/lucafdl/OSES.git> 
 Then you have to move the repository in your poky directory.
 
 After doing this, do this commands:
@@ -25,7 +25,6 @@ So, you added the layer. Inside the layer we have two recipes in recipes-example
 - "heartbeat" for the linux application; 
 - "mycdd" for the character-based driver;
 
-In the heartbeat.c file you need to change the path of the library "data.h".
 
 Next, edit the local.conf file located in build_qemuarm / conf, adding the following lines:
 IMAGE_INSTALL_append = " heartbeat" 
